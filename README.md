@@ -25,11 +25,14 @@ The project aims to provide a production-grade reference SwiftUI application tha
 
 The app follows a modular feature-based architecture:
 
-App
-Core
-Features
-UI
+App // Entry point of the application
+Core // Models, Storage, and Services
+Features // Modular feature folders: Notes, Tags, Search
+UI // Reusable Views and Components
+Resources // Assets like images, colors, fonts
 
+
+This structure allows NimbusNotes to scale easily with additional features like iCloud sync, Markdown support, attachments, and collaboration.
 
 ## Roadmap
 
