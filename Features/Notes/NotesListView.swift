@@ -1,12 +1,15 @@
 import SwiftUI
 
 struct NotesListView: View {
-    @State private var notes: [String] = ["Welcome to NimbusNotes"]
+    @StateObject private var storage = NoteStorage()
 
     var body: some View {
         NavigationView {
-            List(notes, id: \.self) { note in
-                Text(note)
+            List {
+                ForEach(storage.notes) { note in
+                    Text(note.title)
+                }
+                .onDelete(perform: deleteNote)
             }
             .navigationTitle("NimbusNotes")
             .toolbar {
@@ -18,7 +21,12 @@ struct NotesListView: View {
     }
 
     private func addNote() {
-        notes.append("New note \(notes.count + 1)")
+        let newNote = Note(title: "New note \(storage.notes.count + 1)", content: "")
+        storage.add(note: newNote)
+    }
+
+    private func deleteNote(at offsets: IndexSet) {
+        offsets.map { storage.notes[$0] }.forEach { storage.delete(note: $0) }
     }
 }
 
