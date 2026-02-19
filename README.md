@@ -25,3 +25,30 @@ The project aims to provide a production-grade reference SwiftUI application tha
 
 The app follows a modular feature-based architecture:
 
+App
+Core
+Features
+UI
+
+
+## Roadmap
+
+### Phase 1
+- Basic notes
+- Tags
+- Local storage
+- Search
+
+### Phase 2
+- Markdown
+- iCloud sync
+- Attachments
+
+### Phase 3
+- Collaboration
+- Export
+- Widgets
+
+## License
+
+MIT
