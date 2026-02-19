@@ -2,16 +2,26 @@ import SwiftUI
 
 struct NotesListView: View {
     @StateObject private var storage = NoteStorage()
+    @State private var searchText: String = ""
+
+    var filteredNotes: [Note] {
+        if searchText.isEmpty {
+            return storage.notes
+        } else {
+            return storage.notes.filter { $0.title.lowercased().contains(searchText.lowercased()) }
+        }
+    }
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(storage.notes) { note in
+                ForEach(filteredNotes) { note in
                     Text(note.title)
                 }
                 .onDelete(perform: deleteNote)
             }
             .navigationTitle("NimbusNotes")
+            .searchable(text: $searchText, prompt: "Search Notes")
             .toolbar {
                 Button(action: addNote) {
                     Image(systemName: "plus")
